@@ -7,7 +7,7 @@
 				<target>Ps14 Images</target>
 			</trans-unit>
 			<trans-unit id="description">
-				<target>TYPO3 Extension serves as a template for TYPO3 modules</target>
+				<target>Mehrere Bilder in verschiedenen Darstellungen</target>
 			</trans-unit>
 
 			<trans-unit id="elements.record-type.default">

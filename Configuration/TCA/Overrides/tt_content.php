@@ -17,9 +17,13 @@
 
 // Felddefinitionen
 $GLOBALS['TCA']['tt_content']['types']['ps14_images']['showitem'] = \Ps14\Site\Service\TcaService::getShowitem(
-	['general', 'appearance', 'language', 'access', 'categories', 'notes', 'extended'],
+	['general', 'images', 'appearance', 'language', 'access', 'categories', 'notes', 'extended'],
 	[
-		'general' => '--palette--;;general, --palette--;;headers, --palette--;;foundation_identifier, bodytext, image, tx_foundation_elements,'
+		'general' => '--palette--;;general, --palette--;;headers, --palette--;;foundation_identifier, bodytext,',
+		'images' => [
+			'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.images',
+			'fields' => 'image, --palette--;;foundation_image_adjustment, --palette--;;foundation_image_gallery,--palette--;;foundation_image_hidden,'
+		]
 	]
 );
 
@@ -27,6 +31,20 @@ $GLOBALS['TCA']['tt_content']['types']['ps14_images']['showitem'] = \Ps14\Site\S
 $GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['bodytext']['config'] = [
 	'enableRichtext' => true,
 	'richtextConfiguration' => 'ps14Default',
+];
+
+$GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['imageorient']['onChange'] = 'reload';
+$GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['imageorient']['config']['items'] = [
+	[
+		'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.0',
+		'value' => 0,
+		'icon' => 'content-beside-text-img-above-center',
+	],
+	[
+		'label' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:imageorient.I.3',
+		'value' => 8,
+		'icon' => 'content-beside-text-img-below-center',
+	],
 ];
 
 // Crop-Varianten fuer Image-Feld
@@ -40,51 +58,5 @@ $GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['image
 			'allowedAspectRatios' => ['21_9', 'NaN'],
 			'selectedRatio' => '21_9'
 		]
-	]
-);
-
-// ---------------------------------------------------------------------------------------------------------------------
-// Elements TCA anpassen
-
-// Definition Record
-$GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['tx_foundation_elements']['config']['overrideChildTca'] = [
-	'columns' => [
-		'record_type' => [
-			'config' => [
-				'items' => [
-					[
-						'label' => 'LLL:EXT:ps14_images/Resources/Private/Language/locallang_tca.xlf:elements.record-type.default',
-						'value' => 'ps14_images_default'
-					],
-				],
-				'default' => 'ps14_images_default'
-			]
-		],
-		'description' => [
-			'config' => [
-				'richtextConfiguration' => 'ps14Default'
-			]
-		]
-	],
-	'types' => [
-		'ps14_images_default' => [
-			'showitem' => \Ps14\Site\Service\TcaService::getShowitem(
-				['general', 'appearance', 'access'],
-				[
-					'general' => '--palette--;;general, --palette--;;header, description, media,'
-				],
-				'tx_foundation_domain_model_elements'
-			)
-		],
-	]
-];
-
-// Anpassung Crop-Varianten fuer Elements
-$GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['tx_foundation_elements']['config']['overrideChildTca']['columns']['media']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants'] = \Ps14\Site\Service\TcaService::getCropVariants(
-	[
-		'default' => [
-			'allowedAspectRatios' => ['16_9'],
-			'selectedRatio' => '16_9'
-		],
 	]
 );
