@@ -1,0 +1,46 @@
+<div xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:fo="http://typo3.org/ns/Ps14/Foundation/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:section name="Main">
+		<f:if condition="{data.bodytext}">
+			<f:render partial="Content/Bodytext" arguments="{bodytext: data.bodytext}" />
+		</f:if>
+
+		<div class="tobii-group gallery" data-gallery-uid="{data.uid}" data-gallery-lightbox="{data.image_zoom}">
+			<ul class="grid gallery--container">
+				<f:for each="{images}" as="image">
+					<li class="grid__column">
+						<f:render section="Item" arguments="{_all}" />
+					</li>
+				</f:for>
+			</ul>
+		</div>
+	</f:section>
+
+	<f:section name="Item">
+		<a class="tobii-group__item gallery--image" data-group="gallery-{data.uid}" href="{f:uri.image(src: image.uid, treatIdAsReference: 1, maxWidth: 1280, height: 1024, cropVariant: 'fullscreen')}" aria-label="{f:translate(key: 'LLL:EXT:xo/Resources/Private/Language/locallang_frontend.xlf:tx_xo.action.enlarge')}">
+			<f:render section="Image" arguments="{_all}" />
+		</a>
+	</f:section>
+
+	<f:section name="Item-X">
+		<f:if condition="{data.image_zoom}">
+			<f:then>
+				<a class="tobii-trigger gallery--image" data-group="gallery-{data.uid}" href="{f:uri.image(src: image.uid, treatIdAsReference: 1, maxWidth: 1280, height: 1024, cropVariant: 'fullscreen')}" aria-label="{f:translate(key: 'LLL:EXT:xo/Resources/Private/Language/locallang_frontend.xlf:tx_xo.action.enlarge')}">
+					<f:render section="Image" arguments="{_all}" />
+				</a>
+			</f:then>
+			<f:else>
+				<div class="gallery--image">
+					<f:render section="Image" arguments="{_all}" />
+				</div>
+			</f:else>
+		</f:if>
+	</f:section>
+
+	<f:section name="Image">
+		<f:render partial="Media/Main" section="Main" arguments="{
+			file: image,
+			settings: '{fo:settings.get(extension: \'Ps14Images\', path: \'images.gallery\')}',
+			debug: 1
+		}" />
+	</f:section>
+</div>

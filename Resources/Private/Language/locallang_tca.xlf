@@ -13,6 +13,10 @@
 			<trans-unit id="elements.record-type.default">
 				<source>Default</source>
 			</trans-unit>
+
+			<trans-unit id="content.variant.gallery">
+				<source>Gallery</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

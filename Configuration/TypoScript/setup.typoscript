@@ -21,18 +21,18 @@ tt_content {
 			40 = EXT:ps14_site/Resources/Private/Partials/
 		}
 
-#		dataProcessing {
-#			200 = Ps14\Images\DataProcessing\ModuleProcessor
-#			200 {
-#				importCss {
-#					10 = /assets/css/modules/images.css
-#				}
-#
+		dataProcessing {
+			200 = Ps14\Foundation\DataProcessing\ModuleProcessor
+			200 {
+				importCss {
+					10 = /assets/css/modules/images.css
+				}
+
 #				importJs {
 #					10 = /assets/js/modules/images.js
 #				}
-#			}
-#		}
+			}
+		}
 	}
 }
 
@@ -82,6 +82,34 @@ plugin.tx_ps14images {
 					3 {
 						maxWidth = 320
 						cropVariant = default
+						mediaQuery = (min-width: 0px)
+					}
+				}
+			}
+
+			gallery {
+				maxWidth = 1200
+				cropVariant = thumbnail
+
+				mediaQueries {
+					0 {
+						maxWidth = 1200
+						cropVariant = thumbnail
+						mediaQuery = (min-width: 992px)
+					}
+					1 {
+						maxWidth = 992
+						cropVariant = thumbnail
+						mediaQuery = (min-width: 768px)
+					}
+					2 {
+						maxWidth = 768
+						cropVariant = thumbnail
+						mediaQuery = (min-width: 576px)
+					}
+					3 {
+						maxWidth = 576
+						cropVariant = thumbnail
 						mediaQuery = (min-width: 0px)
 					}
 				}

@@ -51,12 +51,12 @@ $GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['image
 $GLOBALS['TCA']['tt_content']['types']['ps14_images']['columnsOverrides']['image']['config']['overrideChildTca']['columns']['crop']['config']['cropVariants'] = \Ps14\Site\Service\TcaService::getCropVariants(
 	[
 		'thumbnail' => [
-			'allowedAspectRatios' => ['16_9', '4_3'],
+			'allowedAspectRatios' => ['16_9', '4_3', '1_1'],
 			'selectedRatio' => '16_9'
 		],
 		'fullsize' => [
-			'allowedAspectRatios' => ['21_9', 'NaN'],
-			'selectedRatio' => '21_9'
+			'allowedAspectRatios' => ['NaN', '21_9'],
+			'selectedRatio' => 'NaN'
 		]
 	]
 );
