@@ -4,15 +4,32 @@
 			<f:render partial="Content/Bodytext" arguments="{bodytext: data.bodytext}" />
 		</f:if>
 
-		<div class="gallery" data-gallery-uid="{data.uid}" data-gallery-lightbox="{data.image_zoom}">
-			<ul class="grid gallery--container">
-				<f:for each="{images}" as="image">
-					<li class="grid__column">
-						<f:render section="Item" arguments="{_all}" />
-					</li>
-				</f:for>
-			</ul>
+		<div class="gallery readmore-container" data-gallery-uid="{data.uid}" data-gallery-lightbox="{data.image_zoom}">
+			<div class="readmore-container--collapse">
+				<ul class="gallery--container readmore-container--body">
+					<f:for each="{images}" as="image" iteration="iterator">
+						<li class="gallery__item">
+							<f:render section="Item" arguments="{_all}" />
+
+							<f:if condition="{iterator.index} === 3">
+								<f:render section="ReadmoreToggle" />
+							</f:if>
+						</li>
+					</f:for>
+				</ul>
+			</div>
+
 		</div>
+	</f:section>
+
+	<f:section name="ReadmoreToggle">
+		<button class="readmore-container--toggle gallery-readmore">
+			<div class="gallery-readmore__icon"><fo:svg.inline source="/assets/svg/readmore.svg" /></div>
+			<div class="gallery-readmore__label">
+				<span class="gallery-readmore__label-value">0</span>
+				<span class="gallery-readmore__label-description"><f:translate key="LLL:EXT:ps14_site/Resources/Private/Language/locallang_frontend.xlf:images.readmore" /></span>
+			</div>
+		</button>
 	</f:section>
 
 	<f:section name="Item">
