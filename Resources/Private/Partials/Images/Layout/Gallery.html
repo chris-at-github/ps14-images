@@ -57,7 +57,7 @@
 		<f:render partial="Media/Main" section="Main" arguments="{
 			file: image,
 			settings: '{fo:settings.get(extension: \'Ps14Images\', path: \'images.gallery\')}',
-			debug: 1
+			lazyload: data.image_lazyload
 		}" />
 	</f:section>
 </div>
