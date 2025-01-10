@@ -93,22 +93,27 @@ plugin.tx_ps14images {
 
 				mediaQueries {
 					0 {
-						maxWidth = 1200
+						maxWidth = 320
+						cropVariant = thumbnail
+						mediaQuery = (min-width: 1200px)
+					}
+					1 {
+						maxWidth = 255
 						cropVariant = thumbnail
 						mediaQuery = (min-width: 992px)
 					}
-					1 {
-						maxWidth = 992
+					2 {
+						maxWidth = 200
 						cropVariant = thumbnail
 						mediaQuery = (min-width: 768px)
 					}
-					2 {
-						maxWidth = 768
+					3 {
+						maxWidth = 345
 						cropVariant = thumbnail
 						mediaQuery = (min-width: 576px)
 					}
-					3 {
-						maxWidth = 576
+					4 {
+						maxWidth = 530
 						cropVariant = thumbnail
 						mediaQuery = (min-width: 0px)
 					}
